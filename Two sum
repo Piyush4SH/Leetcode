@@ -1,0 +1,30 @@
+import java.util.HashMap;
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        // First, populate the HashMap with the numbers and their indices
+        for (int i = 0; i < nums.length; i++) {
+            map.put(nums[i], i);
+        }
+
+        // Iterate through the array to find the complement
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+
+            // Check if the complement exists in the HashMap
+            if (map.containsKey(complement)) {
+                int index = map.get(complement);
+
+                // Ensure that the indices are different (not the same number)
+                if (index != i) {
+                    return new int[]{i, index};
+                }
+            }
+        }
+
+        // If no solution is found, return an empty array
+        return new int[]{};
+    }
+}
